@@ -603,6 +603,17 @@ end)
 client.connect_signal("unfocus", function(c)
 	c.border_color = beautiful.border_normal
 end)
+
+-- Mouse follows focus
+client.connect_signal("request::activate", function(c, ctx)
+	local geo = c:geometry()
+	if ctx == "client.focus.byidx" then
+		mouse.coords({
+			x = geo.x + math.ceil(geo.width / 2),
+			y = geo.y + math.ceil(geo.height / 2),
+		})
+	end
+end)
 -- }}}
 
 awful.spawn.with_shell("~/.config/awesome/scripts/setupmonitors.sh")
