@@ -386,39 +386,52 @@ globalkeys = gears.table.join(
 		end
 	end, { description = "restore minimized", group = "client" }),
 
-	-- Prompt
-	awful.key({ modkey }, "r", function()
-		awful.screen.focused().mypromptbox:run()
-	end, { description = "run prompt", group = "launcher" }),
-
-	awful.key({ modkey }, "x", function()
-		awful.prompt.run({
-			prompt = "Run Lua code: ",
-			textbox = awful.screen.focused().mypromptbox.widget,
-			exe_callback = awful.util.eval,
-			history_path = awful.util.get_cache_dir() .. "/history_eval",
-		})
-	end, { description = "lua execute prompt", group = "awesome" }),
 	-- Menubar
 	awful.key({ modkey }, "p", function()
 		menubar.show()
-	end, { description = "show the menubar", group = "launcher" })
+	end, { description = "show the menubar", group = "launcher" }),
+
+	-- Function keys
+	awful.key({}, "Print", function()
+		awful.util.spawn("flameshot full --clipboard")
+	end),
+	awful.key({}, "XF86AudioRaiseVolume", function()
+		volume_widget:inc()
+	end),
+	awful.key({}, "XF86AudioLowerVolume", function()
+		volume_widget:dec()
+	end),
+	awful.key({}, "XF86AudioMute", function()
+		volume_widget:toggle()
+	end),
+
+	awful.key({}, "XF86AudioPlay", function()
+		awful.util.spawn("playerctl play-pause", false)
+	end),
+	awful.key({}, "XF86AudioNext", function()
+		awful.util.spawn("playerctl next", false)
+	end),
+	awful.key({}, "XF86AudioPrev", function()
+		awful.util.spawn("playerctl previous", false)
+	end),
+
+	awful.key({}, "XF86MonBrightnessUp", function()
+		brightness_widget:inc()
+	end, { description = "increase brightness", group = "custom" }),
+	awful.key({}, "XF86MonBrightnessDown", function()
+		brightness_widget:dec()
+	end, { description = "decrease brightness", group = "custom" })
 )
 
 clientkeys = gears.table.join(
-	awful.key({ modkey }, "f", function(c)
+	awful.key({ modkey, "Control" }, "f", function(c)
 		c.fullscreen = not c.fullscreen
 		c:raise()
 	end, { description = "toggle fullscreen", group = "client" }),
 	awful.key({ modkey }, "c", function(c)
 		c:kill()
 	end, { description = "close", group = "client" }),
-	awful.key(
-		{ modkey, "Control" },
-		"space",
-		awful.client.floating.toggle,
-		{ description = "toggle floating", group = "client" }
-	),
+	awful.key({ modkey }, "f", awful.client.floating.toggle, { description = "toggle floating", group = "client" }),
 	awful.key({ modkey, "Control" }, "Return", function(c)
 		c:swap(awful.client.getmaster())
 	end, { description = "move to master", group = "client" }),
@@ -428,11 +441,6 @@ clientkeys = gears.table.join(
 	awful.key({ modkey }, "t", function(c)
 		c.ontop = not c.ontop
 	end, { description = "toggle keep on top", group = "client" }),
-	awful.key({ modkey }, "n", function(c)
-		-- The client currently has the input focus, so it cannot be
-		-- minimized, since minimized clients can't have the focus.
-		c.minimized = true
-	end, { description = "minimize", group = "client" }),
 	awful.key({ modkey }, "m", function(c)
 		c.maximized = not c.maximized
 		c:raise()
