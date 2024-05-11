@@ -22,6 +22,11 @@ require("awful.hotkeys_popup.keys")
 local debian = require("debian.menu")
 local has_fdo, freedesktop = pcall(require, "freedesktop")
 
+local volume_widget = require("awesome-wm-widgets.pactl-widget.volume")
+local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
+local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
+local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -123,6 +128,7 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = myma
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+menubar.menu_gen.all_categories = {}
 -- }}}
 
 -- Keyboard map indicator and switcher
@@ -130,7 +136,20 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock()
+mytextclock = wibox.widget.textclock('<span font="ZedMono Nerd Font 14">%m\n%d</span>')
+mytextdate = wibox.widget.textclock('<span font="ZedMono Nerd Font 14">%H\n%M</span>')
+mytime = {
+	widget = wibox.container.margin,
+	left = 2,
+	right = 2,
+	{
+		layout = wibox.layout.align.vertical,
+		mytextclock,
+		mytextdate,
+	},
+}
+
+myvolume = volume_widget({ widget_type = "arc" })
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -195,10 +214,8 @@ awful.screen.connect_for_each_screen(function(s)
 	set_wallpaper(s)
 
 	-- Each screen has its own tag table.
-	awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+	awful.tag({ "壹", "貳", "參", "肆", "伍", "陸", "柒", "捌", "玖" }, s, awful.layout.layouts[1])
 
-	-- Create a promptbox for each screen
-	s.mypromptbox = awful.widget.prompt()
 	-- Create an imagebox widget which will contain an icon indicating which layout we're using.
 	-- We need one layoutbox per screen.
 	s.mylayoutbox = awful.widget.layoutbox(s)
@@ -216,11 +233,16 @@ awful.screen.connect_for_each_screen(function(s)
 			awful.layout.inc(-1)
 		end)
 	))
+
 	-- Create a taglist widget
 	s.mytaglist = awful.widget.taglist({
 		screen = s,
 		filter = awful.widget.taglist.filter.all,
 		buttons = taglist_buttons,
+		layout = {
+			spacing = 10,
+			layout = wibox.layout.fixed.vertical,
+		},
 	})
 
 	-- Create a tasklist widget
@@ -231,23 +253,45 @@ awful.screen.connect_for_each_screen(function(s)
 	})
 
 	-- Create the wibox
-	s.mywibox = awful.wibar({ position = "top", screen = s })
+	s.mywibox = awful.wibar({ position = "left", screen = s, width = 24 })
+
+	s.mysystray = wibox.widget.systray()
+	s.mysystray.set_horizontal(false)
 
 	-- Add widgets to the wibox
 	s.mywibox:setup({
-		layout = wibox.layout.align.horizontal,
+		widget = wibox.container.margin,
+		layout = wibox.layout.align.vertical,
+		left = 2,
+		right = 2,
+		align = "center",
+		valign = "center",
 		{ -- Left widgets
-			layout = wibox.layout.fixed.horizontal,
+			layout = wibox.layout.fixed.vertical,
+			spacing = 10,
 			mylauncher,
 			s.mytaglist,
 			s.mypromptbox,
 		},
-		s.mytasklist, -- Middle widget
+		{
+			wibox.widget.base.make_widget(),
+			widget = wibox.container.background,
+		},
 		{ -- Right widgets
-			layout = wibox.layout.fixed.horizontal,
+			layout = wibox.layout.fixed.vertical,
+			spacing = 10,
 			mykeyboardlayout,
-			wibox.widget.systray(),
-			mytextclock,
+			{
+				s.mysystray,
+				left = 2,
+				right = 2,
+				widget = wibox.container.margin,
+			},
+			ram_widget(),
+			myvolume,
+			brightness_widget({ program = "brightnessctl" }),
+			batteryarc_widget({ widget_type = "arc", notification_position = "bottom_left" }),
+			mytime,
 			s.mylayoutbox,
 		},
 	})
