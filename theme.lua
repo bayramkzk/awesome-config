@@ -14,10 +14,10 @@ local themes_path = gfs.get_themes_dir()
 local theme = dofile(themes_path .. "default/theme.lua")
 -- load vector assets' generators for this theme
 
-theme.font = "Fira Sans Regular 9"
+theme.font = "Fira Sans 11"
 
 theme.bg_normal = xrdb.background
-theme.bg_focus = xrdb.color12
+theme.bg_focus = "#78aeed"
 theme.bg_urgent = xrdb.color9
 theme.bg_minimize = xrdb.color8
 theme.bg_systray = theme.bg_normal
@@ -27,7 +27,7 @@ theme.fg_focus = theme.bg_normal
 theme.fg_urgent = theme.bg_normal
 theme.fg_minimize = theme.bg_normal
 
-theme.useless_gap = dpi(3)
+theme.useless_gap = dpi(2)
 theme.border_width = dpi(2)
 theme.border_normal = xrdb.color0
 theme.border_focus = theme.bg_focus
@@ -52,7 +52,7 @@ theme.tooltip_bg = theme.bg_normal
 -- menu_[border_color|border_width]
 theme.menu_submenu_icon = themes_path .. "default/submenu.png"
 theme.menu_height = dpi(16)
-theme.menu_width = dpi(100)
+theme.menu_width = dpi(140)
 
 -- You can add as many variables as
 -- you wish and access them by using
@@ -114,6 +114,8 @@ end
 theme.wallpaper = function(s)
 	return theme_assets.wallpaper(wallpaper_bg, wallpaper_fg, wallpaper_alt_fg, s)
 end
+
+theme.taglist_font = "ZedMono Nerd Font 11"
 
 return theme
 
