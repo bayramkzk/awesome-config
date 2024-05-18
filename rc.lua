@@ -254,7 +254,8 @@ awful.screen.connect_for_each_screen(function(s)
 	})
 
 	-- Create the wibox
-	s.mywibox = awful.wibar({ position = "left", screen = s, width = 24 })
+	local positions = { "left", "right" }
+	s.mywibox = awful.wibar({ position = positions[s.index], screen = s, width = 24 })
 
 	s.mysystray = wibox.widget.systray()
 	s.mysystray.set_horizontal(false)
