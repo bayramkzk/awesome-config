@@ -421,7 +421,16 @@ globalkeys = gears.table.join(
 	end, { description = "increase brightness", group = "custom" }),
 	awful.key({}, "XF86MonBrightnessDown", function()
 		brightness_widget:dec()
-	end, { description = "decrease brightness", group = "custom" })
+	end, { description = "decrease brightness", group = "custom" }),
+
+	-- Misc
+	awful.key({ modkey }, "v", function()
+		awful.util.spawn("copyq toggle")
+	end),
+
+	awful.key({ modkey }, "e", function()
+		awful.util.spawn(terminal .. " -e ranger")
+	end)
 )
 
 clientkeys = gears.table.join(
