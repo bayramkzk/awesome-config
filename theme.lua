@@ -109,7 +109,7 @@ local is_dark_bg = (bg_numberic_value < 383)
 
 -- Generate wallpaper:
 local wallpaper_bg = xrdb.color8
-local wallpaper_fg = xrdb.color7
+local wallpaper_fg = xrdb.color8
 local wallpaper_alt_fg = xrdb.color12
 if not is_dark_bg then
 	wallpaper_bg, wallpaper_fg = wallpaper_fg, wallpaper_bg
@@ -122,4 +122,4 @@ theme.taglist_font = "ZedMono Nerd Font 11"
 
 return theme
 
--- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
+-- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=4:softtabstop=4:textwidth=80
