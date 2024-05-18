@@ -29,6 +29,8 @@ local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightne
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
+naughty.config.defaults["icon_size"] = 64
+
 if awesome.startup_errors then
 	naughty.notify({
 		preset = naughty.config.presets.critical,

@@ -59,6 +59,9 @@ theme.menu_width = dpi(140)
 -- beautiful.variable in your rc.lua
 --theme.bg_widget = "#cc0000"
 
+theme.notification_icon_size = 48
+theme.notification_width = 400
+
 -- Recolor Layout icons:
 theme = theme_assets.recolor_layout(theme, theme.fg_normal)
 
