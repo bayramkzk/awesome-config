@@ -123,8 +123,6 @@ else
 	})
 end
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = mymainmenu })
-
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 menubar.menu_gen.all_categories = {}
@@ -268,7 +266,7 @@ awful.screen.connect_for_each_screen(function(s)
 		{ -- Left widgets
 			layout = wibox.layout.fixed.vertical,
 			spacing = 10,
-			mylauncher,
+			s.mylayoutbox,
 			s.mytaglist,
 			s.mypromptbox,
 		},
@@ -290,7 +288,6 @@ awful.screen.connect_for_each_screen(function(s)
 			brightness_widget({ program = "brightnessctl" }),
 			batteryarc_widget({ widget_type = "arc", notification_position = "bottom_left" }),
 			mytime,
-			s.mylayoutbox,
 		},
 	})
 end)
