@@ -133,17 +133,21 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock('<span font="ZedMono Nerd Font 14">%m\n%d</span>')
-mytextdate = wibox.widget.textclock('<span font="ZedMono Nerd Font 14">%H\n%M</span>')
+-- mytime = {
+-- 	widget = wibox.container.place,
+-- 	layout = wibox.layout.align.vertical,
+-- 	wibox.widget.textclock('<span font="ZedMono Nerd Font 9.5">%b</span>'),
+-- 	wibox.widget.textclock('<span font="ZedMono Nerd Font 14">%m\n%d</span>'),
+-- 	wibox.widget.textclock('<span font="ZedMono Nerd Font 14">%H\n%M</span>'),
+-- 	wibox.widget.textclock('<span font="ZedMono Nerd Font 9.5">%a</span>'),
+-- }
 mytime = {
 	widget = wibox.container.margin,
-	left = 2,
-	right = 2,
-	{
-		layout = wibox.layout.align.vertical,
-		mytextclock,
-		mytextdate,
-	},
+	left = 1,
+	right = 1,
+	wibox.widget.textclock(
+		'<span font="ZedMono Nerd Font Bold 9.5">%b</span>\n<span font="ZedMono Nerd Font Medium 14">%m\n%d</span>\n<span font="ZedMono Nerd Font Bold 9.5">%a</span>\n<span font="ZedMono Nerd Font Medium 14">%H\n%M</span>'
+	),
 }
 
 myvolume = volume_widget({ widget_type = "arc" })
@@ -257,12 +261,7 @@ awful.screen.connect_for_each_screen(function(s)
 
 	-- Add widgets to the wibox
 	s.mywibox:setup({
-		widget = wibox.container.margin,
 		layout = wibox.layout.align.vertical,
-		left = 2,
-		right = 2,
-		align = "center",
-		valign = "center",
 		{ -- Left widgets
 			layout = wibox.layout.fixed.vertical,
 			spacing = 10,
