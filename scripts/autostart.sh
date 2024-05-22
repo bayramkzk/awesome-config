@@ -11,7 +11,8 @@ once picom --daemon
 once flameshot
 once copyq
 once nm-applet
-once /usr/lib/x86_64-linux-gnu/libexec/polkit-kde-authentication-agent-1
+once /usr/lib/polkit-kde-authentication-agent-1
+once gnome-keyring-daemon -fr
 
 setxkbmap us,tr -option grp:alt_caps_toggle
 xsetroot -cursor_name left_ptr
