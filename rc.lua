@@ -62,7 +62,7 @@ end
 beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "alacritty"
+terminal = "wezterm"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -342,15 +342,10 @@ globalkeys = gears.table.join(
 
 	-- Standard program
 	awful.key({ modkey }, "Return", function()
-		if awful.screen.focused().index == 2 then
-			awful.spawn(terminal .. " -o font.size=6")
-		else
-			awful.spawn(terminal)
-		end
+		awful.spawn(terminal)
 	end, { description = "open a terminal", group = "launcher" }),
 	awful.key({ modkey, "Control" }, "r", awesome.restart, { description = "reload awesome", group = "awesome" }),
 	awful.key({ modkey, "Shift" }, "q", awesome.quit, { description = "quit awesome", group = "awesome" }),
-
 	awful.key({ modkey }, "l", function()
 		awful.tag.incmwfact(0.05)
 	end, { description = "increase master width factor", group = "layout" }),
@@ -427,6 +422,10 @@ globalkeys = gears.table.join(
 
 	awful.key({ modkey }, "e", function()
 		awful.util.spawn(terminal .. " -e ranger")
+	end),
+
+	awful.key({ modkey }, "t", function()
+		awful.util.spawn(terminal .. " --config font_size=15 start --cwd /home/r0/Documents/Todo vim todo.md")
 	end)
 )
 
