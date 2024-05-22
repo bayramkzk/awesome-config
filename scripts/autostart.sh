@@ -11,7 +11,7 @@ once picom --daemon
 once flameshot
 once copyq
 once nm-applet
-once /usr/lib/polkit-kde-authentication-agent-1
+once lxpolkit
 once gnome-keyring-daemon -fr
 
 setxkbmap us,tr -option grp:alt_caps_toggle
