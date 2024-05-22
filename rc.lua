@@ -130,16 +130,6 @@ menubar.menu_gen.all_categories = {}
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
 
--- {{{ Wibar
--- Create a textclock widget
--- mytime = {
--- 	widget = wibox.container.place,
--- 	layout = wibox.layout.align.vertical,
--- 	wibox.widget.textclock('<span font="ZedMono Nerd Font 9.5">%b</span>'),
--- 	wibox.widget.textclock('<span font="ZedMono Nerd Font 14">%m\n%d</span>'),
--- 	wibox.widget.textclock('<span font="ZedMono Nerd Font 14">%H\n%M</span>'),
--- 	wibox.widget.textclock('<span font="ZedMono Nerd Font 9.5">%a</span>'),
--- }
 mytime = {
 	widget = wibox.container.margin,
 	left = 1,
@@ -308,7 +298,6 @@ globalkeys = gears.table.join(
 	awful.key({ modkey }, "Left", awful.tag.viewprev, { description = "view previous", group = "tag" }),
 	awful.key({ modkey }, "Right", awful.tag.viewnext, { description = "view next", group = "tag" }),
 	awful.key({ modkey }, "Escape", awful.tag.history.restore, { description = "go back", group = "tag" }),
-
 	awful.key({ modkey }, "j", function()
 		awful.client.focus.byidx(1)
 	end, { description = "focus next by index", group = "client" }),
