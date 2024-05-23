@@ -1,15 +1,15 @@
 #!/bin/bash
 
 case "$1" in
-	-h|--help) echo "Usage: $0 [-l|--light|-d|--dark]"; exit 0;;
 	-l|--light) THEME="light";;
 	-d|--dark) THEME="dark";;
-	*)
+	"")
 		since_midnight=$(($(date +%s) - $(date -d '00:00:00' +%s)))
 		sunrise=$((6*60*60))
 		sunset=$((20*60*60))
 		[ "$since_midnight" -ge "$sunrise" ] && [ "$since_midnight" -lt "$sunset" ] \
 			&& THEME="light" || THEME="dark";;
+	*) echo "Usage: $0 [-l|--light|-d|--dark]"; exit 0;;
 esac
 
 FONT_NAME="Fira Sans Regular 11"
