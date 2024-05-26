@@ -13,9 +13,11 @@ CURSOR_THEME="elementary"
 if [[ $THEME = "light" ]]; then
 	GTK_THEME="adw-gtk3"
 	ICON_THEME="Papirus-Light"
+	DAY_NIGHT="day"
 else
 	GTK_THEME="adw-gtk3-dark"
 	ICON_THEME="Papirus-Dark"
+	DAY_NIGHT="night"
 fi
 
 gsettings set org.gnome.desktop.interface gtk-theme "$GTK_THEME"
@@ -32,3 +34,6 @@ sed -i -e 's/Net\/ThemeName.*/Net\/ThemeName "'"$GTK_THEME"'"/g' \
 	~/.config/xsettingsd/xsettingsd.conf
 killall -HUP xsettingsd
 
+ln -sf "$HOME/.config/alacritty/tokyonight/tokyonight_$DAY_NIGHT.toml" \
+	"$HOME/.config/alacritty/tokyonight/tokyonight.toml"
+touch $HOME/.config/alacritty/alacritty.toml
