@@ -132,10 +132,10 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 mytime = {
 	widget = wibox.container.margin,
-	left = 1,
-	right = 1,
+	left = 3,
+	right = 3,
 	wibox.widget.textclock(
-		'<span font="ZedMono Nerd Font Bold 9.5">%b</span>\n<span font="ZedMono Nerd Font Medium 14">%m\n%d</span>\n<span font="ZedMono Nerd Font Bold 9.5">%a</span>\n<span font="ZedMono Nerd Font Medium 14">%H\n%M</span>'
+		'<span font="Iosevka Nerd Font Bold 9.5">%b</span>\n<span font="Iosevka Nerd Font Medium 14">%m\n%d</span>\n<span font="Iosevka Nerd Font Bold 9.5">%a</span>\n<span font="Iosevka Nerd Font Medium 14">%H\n%M</span>'
 	),
 }
 

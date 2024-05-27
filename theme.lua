@@ -101,7 +101,7 @@ theme.taglist_squares_sel = theme_assets.taglist_squares_sel(taglist_square_size
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(taglist_square_size, theme.fg_normal)
 
 theme.wallpaper = "/home/r0/Nextcloud/Pictures/Backgrounds/beautiful-anime-landscape-cartoon-scene.jpg"
-theme.taglist_font = "ZedMono Nerd Font 11"
+theme.taglist_font = "Iosevka Nerd Font 11"
 
 return theme
 

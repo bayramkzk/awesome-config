@@ -7,7 +7,7 @@ case "$1" in
 esac
 
 FONT_NAME="Fira Sans Regular 11"
-MONOSPACE_FONT_NAME="ZedMono Nerd Font Mono Medium 11"
+MONOSPACE_FONT_NAME="Iosevka Nerd Font Mono Medium 11"
 CURSOR_THEME="elementary"
 
 if [[ $THEME = "light" ]]; then
