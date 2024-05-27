@@ -37,3 +37,5 @@ killall -HUP xsettingsd
 ln -sf "$HOME/.config/alacritty/tokyonight/tokyonight_$DAY_NIGHT.toml" \
 	"$HOME/.config/alacritty/tokyonight/tokyonight.toml"
 touch $HOME/.config/alacritty/alacritty.toml
+
+tmux source-file ~/.config/tmux/tmux.conf
