@@ -132,11 +132,22 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 mytime = {
 	widget = wibox.container.margin,
-	left = 3,
-	right = 3,
-	wibox.widget.textclock(
-		'<span font="Iosevka Nerd Font Bold 9.5">%b</span>\n<span font="Iosevka Nerd Font Medium 14">%m\n%d</span>\n<span font="Iosevka Nerd Font Bold 9.5">%a</span>\n<span font="Iosevka Nerd Font Medium 14">%H\n%M</span>'
-	),
+	left = 1,
+	right = 1,
+	{
+		layout = wibox.layout.fixed.vertical,
+		spacing = 10,
+		{
+			layout = wibox.layout.align.vertical,
+			wibox.widget.textclock('<span font="Iosevka Nerd Font Bold 9.5">%b</span>'),
+			wibox.widget.textclock('<span font="Iosevka Nerd Font Medium 14">%m\n%d</span>'),
+			wibox.widget.textclock('<span font="Iosevka Nerd Font Bold 9.5">%a</span>'),
+		},
+		{
+			layout = wibox.layout.align.vertical,
+			wibox.widget.textclock('<span font="Iosevka Nerd Font Medium 14">%H\n%M</span>'),
+		},
+	},
 }
 
 myvolume = volume_widget({ widget_type = "arc" })
@@ -265,17 +276,22 @@ awful.screen.connect_for_each_screen(function(s)
 		},
 		{ -- Right widgets
 			layout = wibox.layout.fixed.vertical,
-			spacing = 10,
-			mykeyboardlayout,
+			spacing = 20,
 			{
-				s.mysystray,
-				left = 2,
-				right = 2,
-				widget = wibox.container.margin,
+
+				layout = wibox.layout.fixed.vertical,
+				spacing = 10,
+				mykeyboardlayout,
+				{
+					widget = wibox.container.margin,
+					left = 2,
+					right = 2,
+					s.mysystray,
+				},
+				myvolume,
+				brightness_widget({ program = "brightnessctl" }),
+				batteryarc_widget({ widget_type = "arc", notification_position = "bottom_left" }),
 			},
-			myvolume,
-			brightness_widget({ program = "brightnessctl" }),
-			batteryarc_widget({ widget_type = "arc", notification_position = "bottom_left" }),
 			mytime,
 		},
 	})
