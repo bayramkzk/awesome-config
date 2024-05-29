@@ -15,6 +15,7 @@ local theme = dofile(themes_path .. "default/theme.lua")
 -- load vector assets' generators for this theme
 
 theme.font = "Fira Sans 11"
+theme.tooltip_font = theme.font
 
 theme.bg_normal = xrdb.background
 theme.bg_focus = "#78aeed"
@@ -99,6 +100,7 @@ theme.awesome_icon = theme_assets.awesome_icon(theme.menu_height, theme.bg_focus
 local taglist_square_size = dpi(4)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(taglist_square_size, theme.fg_normal)
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(taglist_square_size, theme.fg_normal)
+theme.taglist_font = theme.font
 
 theme.wallpaper = "/home/r0/Nextcloud/Pictures/Backgrounds/beautiful-anime-landscape-cartoon-scene.jpg"
 theme.taglist_font = "Iosevka Nerd Font 11"
