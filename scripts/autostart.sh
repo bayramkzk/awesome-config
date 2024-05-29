@@ -14,6 +14,7 @@ once nm-applet
 once lxpolkit
 once gnome-keyring-daemon -fr
 once darkman run
+once nextcloud
 
 setxkbmap us,tr -option grp:alt_caps_toggle
 xsetroot -cursor_name left_ptr
