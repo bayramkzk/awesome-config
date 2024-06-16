@@ -17,8 +17,8 @@ local theme = dofile(themes_path .. "default/theme.lua")
 theme.font = "Fira Sans 11"
 theme.tooltip_font = theme.font
 
-theme.bg_normal = xrdb.background
-theme.bg_focus = "#78aeed"
+theme.bg_normal = "#1A1B26"
+theme.bg_focus = "#7AA2F7"
 theme.bg_urgent = xrdb.color9
 theme.bg_minimize = xrdb.color8
 theme.bg_systray = theme.bg_normal
@@ -101,8 +101,6 @@ local taglist_square_size = dpi(4)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(taglist_square_size, theme.fg_normal)
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(taglist_square_size, theme.fg_normal)
 theme.taglist_font = theme.font
-
-theme.wallpaper = "/home/r0/Nextcloud/Pictures/Backgrounds/two_sides_of_the_battle.jpg"
 
 return theme
 
